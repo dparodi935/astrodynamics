@@ -414,18 +414,17 @@ class sim():
     def initialise(self, master_bodies_list) -> None:
         numerical.initialise(master_bodies_list)
     
-    def time_step(self, beta, vel_error_tol, pos_error_tol, dt, master_bodies_list) -> float:
-        dt = numerical.time_step(beta, vel_error_tol, pos_error_tol, dt, master_bodies_list)
-        return dt
+    def time_step(self, master_bodies_list) -> float:
+        numerical.time_step(self.dt, master_bodies_list)
+        self.dt = numerical.calc_new_dt(self.dt, master_bodies_list)
     
     ''' MAIN LOOP
     '''
     def run(self) -> None:
         
         #should probably initialise in __init__??
-        dt = self.params["SIMULATION_PARAMS"]["initial_dt"]
+        self.dt = self.params["SIMULATION_PARAMS"]["initial_dt"]
         duration = self.params["SIMULATION_PARAMS"]["duration"]
-        beta, vel_error_tol, pos_error_tol = self.retrieve_calc_params()
         incomplete_maneuvers_list, incomplete_maneuver_times = self.maneuvers_list, self.maneuver_times
         duration_seconds = float(duration)*24*60*60
         time = 0
@@ -434,7 +433,6 @@ class sim():
         print("Simulation Loop Starting")
         start = perf_counter()
         while time < duration_seconds: 
-            #print(time)
             #Check for and then execute maneuvers
             if len(incomplete_maneuver_times) > 0:
                 for i in range(len(incomplete_maneuver_times)):
@@ -444,18 +442,18 @@ class sim():
                         del incomplete_maneuver_times[0]
             
             #do calculations
-            dt = self.time_step(beta, vel_error_tol, pos_error_tol, dt, self.master_bodies_list)
-            #print(f"dt={dt}\n")
+            self.time_step(self.master_bodies_list)
             self.update_bodies()
+            
             #determine SOI every object is in
             self.determine_SOIs()
             
             #check time to next maneuver
             if len(incomplete_maneuver_times) > 0:
                 time_to_next_maneuver = incomplete_maneuver_times[0]-time
-                dt = min(dt, time_to_next_maneuver)    
+                self.dt = min(self.dt, time_to_next_maneuver)    
                 
-            time += dt
+            time += self.dt
             
             self.time_values.append(time)
 

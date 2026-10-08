@@ -11,7 +11,6 @@ import numpy as np
 from numpy.typing import NDArray
 
 from functools import partial
-
 from astro_tools.core import basic
 from astro_tools.data import constants
 from . import bodies
