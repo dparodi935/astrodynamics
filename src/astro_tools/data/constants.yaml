@@ -2,57 +2,77 @@ SOL_DATA:
   sun:
     mass: 1.989e+30 # kilograms
     radius: 6.957e+08 # metres
+    eccentricity: 0.0
+    rotation_period: 2.1168e+06 # seconds (~24.5 days)
 
   mercury:
     mass: 3.3011e+23 # kilograms
     radius: 2.4397e+06
     sma: 5.7909e+10 # metres
     period: 7.6005e+06 # seconds
+    eccentricity: 0.20563
+    rotation_period: 5.0670e+06 # seconds (~58.6 days)
 
   venus:
     mass: 4.8675e+24
     radius: 6.0518e+06
     sma: 1.08209e+11
     period: 1.9414e+07
+    eccentricity: 0.00677
+    rotation_period: -2.0997e+07 # seconds (~243 days, retrograde)
 
   earth:
     mass: 5.9722e+24
     radius: 6.3710e+06
     sma: 1.495979e+11
     period: 3.155812e+07
+    eccentricity: 0.01671
+    rotation_period: 8.6164e+04 # seconds (23.93 hours)
 
   mars:
     mass: 6.4171e+23
     radius: 3.3895e+06
     sma: 2.27923e+11
     period: 5.9355e+07
+    eccentricity: 0.09340
+    rotation_period: 8.8643e+04 # seconds (24.62 hours)
 
   jupiter:
     mass: 1.8982e+27
     radius: 6.9911e+07
     sma: 7.7857e+11
     period: 3.7434e+08
+    eccentricity: 0.04849
+    rotation_period: 3.5730e+04 # seconds (9.93 hours)
 
   saturn:
     mass: 5.6834e+26
     radius: 5.8232e+07
     sma: 1.43353e+12
     period: 9.2960e+08
+    eccentricity: 0.05555
+    rotation_period: 3.8362e+04 # seconds (10.66 hours)
 
   uranus:
     mass: 8.6810e+25
     radius: 2.5362e+07
     sma: 2.87246e+12
     period: 2.6512e+09
+    eccentricity: 0.04630
+    rotation_period: -6.1920e+04 # seconds (~17.2 hours, retrograde)
 
   neptune:
     mass: 1.0241e+26
     radius: 2.4622e+07
     sma: 4.49506e+12
     period: 5.2003e+09
+    eccentricity: 0.00946
+    rotation_period: 5.7996e+04 # seconds (16.11 hours)
 
   pluto:
     mass: 1.3030e+22
     radius: 1.1883e+06
     sma: 5.90638e+12
     period: 7.8244e+09
+    eccentricity: 0.24880
+    rotation_period: -5.5185e+05 # seconds (~6.39 days, retrograde)
