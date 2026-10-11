@@ -1,5 +1,6 @@
 # time
 day = 24 * 60 * 60 # seconds
+year = 365.25 * day
 cy = 36525 * day # Julian century in seconds
 
 # physical constants
