@@ -30,6 +30,9 @@ def initialise(master_bodies_list:list[bodies.Body]) -> None:
         body.kv_values = np.zeros((6, 3), dtype=float)
         body.ka_values = np.zeros((6, 3), dtype=float)
         
+        body.temp_position = np.zeros(3,dtype=float)
+        body.temp_velocity = np.zeros(3,dtype=float)
+        
     N = len(master_bodies_list)
     error_pos = np.zeros(3*N)    
     error_vel = np.zeros(3*N)
@@ -43,14 +46,14 @@ def time_step(dt:float, master_bodies_list:list[bodies.Body]) -> float:
                 
     for i in range(6):
         for body in master_bodies_list:
-            body.temp_position = np.copy(body.position) 
-            for u in range(6):
+            body.temp_position[:] = body.position  # overwrites temp_pos in place (ie. no copying or 'viewing') 
+            for u in range(i): # b[i][u] is zero if u >= i
                 body.temp_position += dt * b[i][u] * body.kv_values[u]
-        
+                
         for body in master_bodies_list:            
             body.ka_values[i] = forces.get_net_acceleration(body, master_bodies_list)
-            body.temp_velocity = np.copy(body.velocity)
-            for u in range(6):
+            body.temp_velocity[:] = body.velocity
+            for u in range(i):
                 body.temp_velocity += dt * b[i][u] * body.ka_values[u]
             body.kv_values[i] = body.temp_velocity
     
