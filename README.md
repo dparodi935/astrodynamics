@@ -1,14 +1,14 @@
 # Astrodynamics
-Astrodynamics library containing various tools. Accessed with a CLI
+Astrodynamics CLI package.
 
-## Features: 
+## Current Features: 
 - Gravitational Simulator
     - Runge-Kutta-Fehlberg Integrator
     - Execute maneuvers
     - Create both 2D and 3D animations
 - Calculates Lagrange points 
 - Lambert's Solver
-- Porkchop Plot
+- Porkchop Plot Generator
 
 
 ## Example Outputs
